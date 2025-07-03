@@ -1,10 +1,10 @@
-# Avanza HR Assistant
+# Avanza IS Assistant
 
-Avanza HR Assistant is a simple yet powerful AI chatbot built with **Streamlit** and **LangChain** that helps employees easily find answers to their HR-related questions by interacting with the company employee handbook.
+Avanza Infrastructure Security Assistant is a simple yet powerful AI chatbot built with **Streamlit** and **LangChain** that helps employees easily find answers to their IS-related questions by interacting with the IS documents.
 
 ## Features
 
-* 📄 Loads HR policy documents (PDFs) and builds a searchable knowledge base
+* 📄 Loads IS documents (PDFs) and builds a searchable knowledge base
 * 🤖 Chat interface powered by **OpenAI GPT** models
 * 🔍 Retrieves relevant document sections using **FAISS** vector search
 * 🔎 Multilingual support: Responds in the language of the user's question
@@ -17,8 +17,8 @@ Avanza HR Assistant is a simple yet powerful AI chatbot built with **Streamlit**
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Shaheryar-01/chatbot.git
-cd avanza-hr-assistant
+git clone https://github.com/Shaheryar-01/is_chatbot.git
+cd avanza-is-assistant
 ```
 
 ### 2. Set Up a Virtual Environment (Optional but Recommended)
@@ -46,7 +46,7 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ## How It Works
 
-1. **PDF Download:** The app automatically downloads the employee handbook from a Google Drive link if not present locally.
+1. **PDF Download:** The app automatically downloads the IS documents from the folder in the repo if not present locally.
 
 2. **Document Loading & Vectorstore:**
 
@@ -72,7 +72,6 @@ OPENAI_API_KEY=your_openai_api_key_here
 ```
 ├── app.py
 ├── documents/
-│   └── 22_Employee Handbook.pdf
 ├── faiss_index/
 ├── .env
 ├── requirements.txt
