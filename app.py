@@ -14,27 +14,18 @@ load_dotenv()
 
 # --- Streamlit Page Config ---
 st.set_page_config(
-    page_title="Avanza HR Assistant",
+    page_title="Avanza IS Assistant",
     page_icon="avanza.png",
     layout="centered"
 )
 
 # --- Display logo and title ---
 st.image("avanza_solutions.png", width=200)
-st.title("Avanza HR Assistant")
-st.caption("🤖 HR made simple. Ask me anything from the Employee Handbook!")
+st.title("Avanza IS Assistant")
+st.caption("🤖 Ask me anything about Infrastructure Services!")
 
-# --- Step 1: Download PDF from Google Drive ---
-PDF_URL = "https://drive.google.com/uc?export=download&id=1LRcof-2qDV0V5FeRPPJx6Zdruw23BOOq"
-PDF_PATH = "22_Employee Handbook.pdf"
 
-if not os.path.exists(PDF_PATH):
-    with st.spinner("📥 Downloading employee handbook..."):
-        response = requests.get(PDF_URL)
-        with open(PDF_PATH, "wb") as f:
-            f.write(response.content)
-
-# --- Step 2: Build Vectorstore ---
+# --- Step 1: Build Vectorstore ---
 @st.cache_resource
 def load_vectorstore():
     print("📦 Loading vectorstore...")
@@ -67,7 +58,7 @@ def load_vectorstore():
 
 retriever = load_vectorstore()
 
-# --- Step 3: Load QA Chain ---
+# --- Step 2: Load QA Chain ---
 api_key = os.getenv("OPENAI_API_KEY")
 llm = ChatOpenAI(model_name="gpt-4.1-nano", temperature=0.7, openai_api_key=api_key)
 qa_chain = load_qa_chain(llm, chain_type="stuff")
@@ -78,7 +69,7 @@ def ask_question(query):
     context = "\n\n".join([doc.page_content for doc in docs])
 
     history = [
-        {"role": "system", "content": "You are a helpful HR assistant. Only use the context from the company employee handbook to answer. Do not guess or add extra info."},
+        {"role": "system", "content": "You are a helpful Infrastructure Services assistant. Only use the context from the document to answer. Do not guess or add extra info."},
         {"role": "system", "content": f"Document Context:\n{context}"},
         {"role": "system", "content": "Always respond in the same language as the user's question."}
     ]
@@ -104,7 +95,7 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-user_query = st.chat_input("Ask a question about HR policies...")
+user_query = st.chat_input("How can I help you with IS Networks today?")
 
 if user_query:
     st.chat_message("user").markdown(user_query)
