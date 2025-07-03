@@ -17,7 +17,7 @@ Avanza HR Assistant is a simple yet powerful AI chatbot built with **Streamlit**
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/avanza-hr-assistant.git
+git clone https://github.com/Shaheryar-01/chatbot.git
 cd avanza-hr-assistant
 ```
 
